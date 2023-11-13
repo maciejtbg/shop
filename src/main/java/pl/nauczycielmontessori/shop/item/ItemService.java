@@ -15,7 +15,7 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-    public List<Item> getAllItems() {
+    public List<Items> getAllItems() {
         return itemRepository.findAll();
     }
 }
