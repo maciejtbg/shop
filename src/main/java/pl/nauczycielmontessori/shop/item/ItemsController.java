@@ -32,6 +32,7 @@ public class ItemsController {
 
         ModelAndView modelAndView = new ModelAndView("itemDetails");
         modelAndView.addObject("item", item);
+        modelAndView.addObject("currencySymbol","$");
         return modelAndView;
     }
 

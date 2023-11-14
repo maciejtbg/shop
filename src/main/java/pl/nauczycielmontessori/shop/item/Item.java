@@ -1,8 +1,6 @@
 package pl.nauczycielmontessori.shop.item;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -24,9 +22,12 @@ public class Item {
     private BigDecimal actualPrice;
     private BigDecimal formerPrice;
     private boolean sale;
-    private float rating;
+    private int rating;
 
-    public Item(String name, String description, String fileName, BigDecimal actualPrice, BigDecimal formerPrice, boolean sale, float rating) {
+    @Enumerated(EnumType.ORDINAL)
+    private ItemType itemType;
+
+    public Item(String name, String description, String fileName, BigDecimal actualPrice, BigDecimal formerPrice, boolean sale, int rating, ItemType itemType) {
         this.name = name;
         this.description = description;
         this.fileName = fileName;
@@ -34,5 +35,6 @@ public class Item {
         this.formerPrice = formerPrice;
         this.sale = sale;
         this.rating = rating;
+        this.itemType = itemType;
     }
 }
