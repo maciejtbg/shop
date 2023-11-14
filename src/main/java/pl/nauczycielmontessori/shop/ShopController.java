@@ -16,9 +16,10 @@ public class ShopController {
         this.itemService = itemService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/shop")
     public String home(Model model){
         model.addAttribute("allItems", itemService.getAllItems());
+        model.addAttribute("currencySymbol",'$');
 
         return "shop";
     }

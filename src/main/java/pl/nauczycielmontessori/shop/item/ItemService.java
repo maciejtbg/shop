@@ -8,14 +8,14 @@ import java.util.List;
 @Service
 public class ItemService {
 
-    private final ItemRepository itemRepository;
+    private final ItemsRepository itemRepository;
 
     @Autowired
-    public ItemService(ItemRepository itemRepository) {
+    public ItemService(ItemsRepository itemRepository) {
         this.itemRepository = itemRepository;
     }
 
-    public List<Items> getAllItems() {
+    public List<Item> getAllItems() {
         return itemRepository.findAll();
     }
 }
