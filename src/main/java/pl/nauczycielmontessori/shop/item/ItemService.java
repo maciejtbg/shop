@@ -18,4 +18,12 @@ public class ItemService {
     public List<Item> getAllItems() {
         return itemRepository.findAll();
     }
+
+    public List<Item> getItemsByType(ItemType itemType) {
+        return itemRepository.findByItemType(itemType);
+    }
+
+    public Item getItemById(Long id){
+        return itemRepository.getReferenceById(id);
+    }
 }

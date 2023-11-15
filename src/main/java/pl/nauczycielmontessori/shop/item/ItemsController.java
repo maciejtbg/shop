@@ -1,10 +1,11 @@
 package pl.nauczycielmontessori.shop.item;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -13,9 +14,12 @@ public class ItemsController {
 
     private final ItemsRepository itemsRepository;
 
+    private final ItemService itemService;
+
     @Autowired
-    public ItemsController(ItemsRepository itemsRepository) {
+    public ItemsController(ItemsRepository itemsRepository, ItemService itemService) {
         this.itemsRepository = itemsRepository;
+        this.itemService = itemService;
     }
 
     // Pobieranie wszystkich przedmiotów
@@ -63,5 +67,17 @@ public class ItemsController {
     @DeleteMapping("/{itemId}")
     public void deleteItem(@PathVariable Long itemId) {
         itemsRepository.deleteById(itemId);
+    }
+
+    @GetMapping("add/{itemId}")
+    public String addItemToCart(@PathVariable("itemId") Long itemId, HttpSession httpSession){
+        List<Item> cart = (List<Item>) httpSession.getAttribute("cart");
+        if (cart == null){
+            cart = new ArrayList<Item>();
+        }
+        Item item = itemService.getItemById(itemId);
+        cart.add(item);
+        httpSession.setAttribute("cart",cart);
+        return  httpSession.toString();
     }
 }

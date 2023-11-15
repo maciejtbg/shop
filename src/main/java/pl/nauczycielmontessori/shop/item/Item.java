@@ -23,6 +23,7 @@ public class Item {
     private BigDecimal formerPrice;
     private boolean sale;
     private int rating;
+//data publikacji
 
     @Enumerated(EnumType.ORDINAL)
     private ItemType itemType;

@@ -4,11 +4,11 @@ import lombok.Getter;
 
 @Getter
 public enum ItemType {
-    MATHEMATICS("Mathematics"),
-    LANGUAGE( "Language"),
-    CULTURE( "Culture"),
-    SENSORY( "Sensory"),
-    EVERYDAY_LIFE("Everyday Life");
+    MATHEMATICS("Matematyka"),
+    LANGUAGE( "Język"),
+    CULTURE( "Kultura"),
+    SENSORY( "Sensoryka"),
+    EVERYDAY_LIFE("Życie codzienne");
 
     private final String displayName;
 

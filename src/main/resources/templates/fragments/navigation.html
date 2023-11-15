@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<body>
+<!-- Navigation-->
+<nav th:fragment="ShopHeader" class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-2 px-lg-5">
+        <a class="navbar-brand" href="#!">Nauczyciel Montessori</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!">Kontakt</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sklep</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">Wszystkie produkty</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="#!">Najbardziej popularne</a></li>
+                        <li><a class="dropdown-item" href="#!">Nowości</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="/shop?type=MATHEMATICS">Matematyka</a></li>
+                        <li><a class="dropdown-item" href="/shop?type=LANGUAGE">Język</a></li>
+                        <li><a class="dropdown-item" href="/shop?type=CULTURE">Kultura</a></li>
+                        <li><a class="dropdown-item" href="/shop?type=SENSORY">Sensoryka</a></li>
+                        <li><a class="dropdown-item" href="/shop?type=EVERYDAY_LIFE">Życie codzienne</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#!">Regulamin</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!">Płatność</a></li>
+            </ul>
+            <form class="d-flex">
+                <button class="btn btn-outline-dark" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    Wózek
+                    <span th:if="${session.cart != null}" th:text="${session.cart.size()}" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    <span th:unless="${session.cart != null}" th:text="0" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+</body>
+</html>
