@@ -31,7 +31,7 @@
 <!--            <svg th:if="${allItems.isEmpty()}" href="/images/noitems.svg"></svg>-->
 
             <div class="container px-4 px-lg-5 mt-5">
-                <img class="img-fluid" th:if="${allItems.isEmpty()}" src="../images/noitems.svg" alt="...">
+                <img class="img-fluid col-lg-6 mx-auto d-block" th:if="${allItems.isEmpty()}" src="../images/noitems.svg" alt="...">
 
                 <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <div class="col mb-5" th:each="item : ${allItems}">
@@ -71,9 +71,7 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; MckW 2023</p></div>
-        </footer>
+        <footer th:replace="fragments/footer :: ShopFooter"></footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

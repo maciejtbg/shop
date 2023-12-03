@@ -34,7 +34,7 @@ public class ItemsController {
         Item item = itemsRepository.findById(itemId)
                 .orElseThrow(() -> new RuntimeException("Item not found with id: " + itemId));
 
-        ModelAndView modelAndView = new ModelAndView("itemDetails");
+        ModelAndView modelAndView = new ModelAndView("item_details");
         modelAndView.addObject("item", item);
         modelAndView.addObject("currencySymbol","$");
         return modelAndView;
@@ -69,15 +69,29 @@ public class ItemsController {
         itemsRepository.deleteById(itemId);
     }
 
-    @GetMapping("add/{itemId}")
-    public String addItemToCart(@PathVariable("itemId") Long itemId, HttpSession httpSession){
-        List<Item> cart = (List<Item>) httpSession.getAttribute("cart");
+    @GetMapping("/add/{itemId}")
+    public ModelAndView addItemToCart(@PathVariable("itemId") Long itemId, HttpSession httpSession){
+        List<Item> cart;
+        cart = (List<Item>) httpSession.getAttribute("cart");
         if (cart == null){
             cart = new ArrayList<Item>();
         }
         Item item = itemService.getItemById(itemId);
-        cart.add(item);
-        httpSession.setAttribute("cart",cart);
-        return  httpSession.toString();
+        //check if item already exists
+        boolean exists = false;
+        for (Item i: cart) {
+            if (itemId.equals(i.getId())) {
+                exists = true;
+                break;
+            }
+        }
+        if (exists){
+            //throw exception and inform that item is already inside cart
+            System.out.println("Item already exists...");
+        } else {
+            cart.add(item);
+            httpSession.setAttribute("cart",cart);
+        }
+        return getItemDetails(itemId);
     }
 }
